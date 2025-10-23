@@ -63,7 +63,7 @@ class ChangeTextBehaviorKtTest {
     @get:Rule var activityScenarioRule = activityScenarioRule<MainActivity>()
     val STRING_TO_BE_TYPED = "I like mobile testing"
 
-    /*@Test
+    @Test
     fun changeText_sameActivity() {
 
         // Type text and then press the button.
@@ -85,33 +85,5 @@ class ChangeTextBehaviorKtTest {
 
         // This view is in a different Activity, no need to tell Espresso.
         onView(withId(R.id.show_text_view)).check(matches(withText(STRING_TO_BE_TYPED)))
-    }*/
-
-    @Test
-    fun changeText_favoriteFood() {
-        val favoriteFood = "khinkali"
-
-        onView(withId(R.id.editTextUserInput))
-            .perform(typeText(favoriteFood), closeSoftKeyboard())
-
-        onView(withId(R.id.changeTextBt)).perform(click())
-        onView(withId(R.id.textToBeChanged)).check(matches(withText(favoriteFood)))
-    }
-
-    @Test
-    fun changeText_favoriteMovie_newActivity() {
-        val firstMovie = "movie1"
-        val secondMovie = "movie2"
-
-        onView(withId(R.id.editTextUserInput))
-            .perform(typeText(firstMovie), closeSoftKeyboard())
-
-        onView(withId(R.id.changeTextBt)).perform(click())
-        onView(withId(R.id.textToBeChanged)).check(matches(withText(firstMovie)))
-        onView(withId(R.id.editTextUserInput))
-            .perform(clearText(), typeText(secondMovie), closeSoftKeyboard())
-
-        onView(withId(R.id.activityChangeTextBtn)).perform(click())
-        onView(withId(R.id.show_text_view)).check(matches(withText(secondMovie)))
     }
 }
